@@ -1,0 +1,12 @@
+<div class='mx-12 p-32'>
+  <h1>Editing issue</h1>
+
+  <%= render "form", issue: @issue, project_id: @project_id  %>
+
+  <br>
+
+  <div>
+    <%= link_to "Show this issue",  project_issue_path(@project_id,@issue), :class => 'text-blue-600' %> |
+    <%= link_to "Back to issues", project_path(@project_id), :class => 'text-blue-600' %>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div id="<%= dom_id issue %>">
+  <p>
+    <strong>Title:</strong>
+    <%= issue.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= issue.description %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= issue.status %>
+  </p>
+
+  <p>
+    <strong>Project:</strong>
+    <%= issue.project.title %>
+  </p>
+  <p>
+    <strong>Assigned To:</strong>
+    <%= assigned_name(issue) %>
+  </p>
+  
+
+</div>

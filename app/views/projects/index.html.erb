@@ -1,0 +1,41 @@
+  <div class='text-center p-20 mx-32'>
+  <p style="color: green"><%= notice %></p>
+
+  <h1 class="text-5xl font-bold" >Projects</h1>
+
+  <% if user_signed_in? %>
+    Logged in as <strong><%= current_user.email %></strong>.
+    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link text-blue-600' %> |
+    <%= link_to "Logout", destroy_user_session_path, data: { "turbo-method": :delete }, :class => 'navbar-link text-blue-600'  %>
+
+    <div id="projects" class="w-full p-32">
+      <div class="flex justify-between items-center">
+        <h1 class="font-bold text-4xl">Posts</h1>
+        <%= link_to "New project", new_project_path , class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      </div>
+
+      <div id="posts" class="min-w-min my-2.5 ">
+        <table class="table-auto rounded-md border-collapse border border-slate-400 min-w-full">
+            <thead>
+              <tr class='text-left border-b bg-gray-100'>
+                <th>Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <% @projects.each do |project| %>
+              <tr class='border-b'>
+              <td class='capitalize text-left'><%= project.title %></td>
+              <td><%= link_to "Show", project, class: "text-blue-600 font-medium" %></td>
+          </tr>
+            <% end %>
+          </table> 
+      </div>
+  </div>
+
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link text-3xl text-blue-600'  %> |
+    <%= link_to "Login", new_user_session_path, :class => 'navbar-link text-3xl text-blue-600'  %>
+  <% end %>
+</div>
+
+

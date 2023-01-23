@@ -1,0 +1,20 @@
+<div class='p-32'>
+  <%= render @issue %>
+
+  <div>
+    <h1>Comments</h1>
+    
+    <% @comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+   <% end %>
+   <%= link_to "New Comment", new_project_issue_comment_path(@project_id,@issue) , class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div>
+    <%= link_to "Edit this issue", edit_project_issue_path(@project_id,@issue),  :class => 'text-blue-600' %> |
+    <%= link_to "Back to issues", project_path(@project_id), :class => 'text-blue-600' %>
+
+    <%= button_to "Destroy this issue", @issue, method: :delete , class: "rounded-lg py-3 mt-5 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+  
+</div>
