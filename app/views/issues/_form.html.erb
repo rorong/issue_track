@@ -22,8 +22,8 @@
   </div>
 
   <div>
-    <%= form.label :assigned_to, style: "display: block" %>
-    <%= form.select :assigned_to, User.all.pluck(:email,:id), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :assigned, style: "display: block" %>
+    <%= form.select :user_id, User.all.pluck(:email,:id), class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div>

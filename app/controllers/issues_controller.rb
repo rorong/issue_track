@@ -1,6 +1,5 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: %i[ show edit update destroy ]
-  after_action :create_project_assignment , only: %i[ create update ]
 
   # GET /issues or /issues.json
   def index
@@ -42,7 +41,7 @@ class IssuesController < ApplicationController
   # PATCH/PUT /issues/1 or /issues/1.json
   def update
     respond_to do |format|
-      if @issue.update(issue_params)
+      if @issue.update!(issue_params)
         format.html { redirect_to project_issue_url(@issue.project_id, @issue), notice: "Issue was successfully updated." }
         format.json { render :show, status: :ok, location: @issue }
       else
@@ -70,16 +69,10 @@ class IssuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def issue_params
-      params.require(:issue).permit(:title, :description, :status, :project_id
+      params.require(:issue).permit(:title, :description, :status, :project_id,
+                                    :user_id
       )
     end
 
-    def create_project_assignment
-      issue_assign = IssueAssignment.where(issue_id: @issue.id)
-      if issue_assign.present?
-        issue_assign.update!(user_id: params[:issue][:assigned_to])
-      else
-        IssueAssignment.create!(issue_id: @issue.id, user_id: params[:issue][:assigned_to])
-      end 
-    end
+
 end

@@ -1,5 +1,6 @@
 class Issue < ApplicationRecord
   belongs_to :project
-  has_many :issue_assignments, dependent: :destroy
+  belongs_to :user
   has_many :comments, dependent: :destroy
+
 end

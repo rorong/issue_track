@@ -12,10 +12,8 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    p params
     @comment = Comment.new
     @project_id = params[:project_id]
-    p @project_id
     @issue_id = params[:issue_id]
   end
 
