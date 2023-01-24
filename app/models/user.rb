@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :issue_assignments
-  has_many :projects , through: :issue_assignments
+  has_many :issues , through: :issue_assignments
 end
