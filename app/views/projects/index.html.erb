@@ -14,48 +14,98 @@
         <div class="e-panel card">
           <div class="card-body">
             <div class="card-title">
-              Projects
+              <h3>Projects</h3>
             </div>
-            <div class="e-table">
-              <div class="table-responsive table-lg mt-3">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th class="max-width">Name</th>
-                      <th class="sortable">Date</th>
-                      <th>Show</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <% @projects.each do |project| %>
-                  <tbody>
-                    <tr>
-                      <td class="text-nowrap align-middle"><%= project.title %></td>
-                      <td class="text-nowrap align-middle"><span><%= project.created_at %></span></td>
-                      <td class="text-center align-middle"><%= link_to "Show", project, class: "text-blue-600 font-medium" %></td>
-                      <td class="text-center align-middle">
-                        <div class="btn-group align-top">
-                        <%= link_to "Edit", edit_project_path(project), :class => 'text-blue-600' %>   &emsp;
-                        <%= link_to "Destroy", project_path(project), data: {"turbo-method": :delete} %>
-                        </div>
-                      </td>
-                    </tr>
-                   
-                  </tbody>
-                  <%end%>
-                </table>
+            <% if current_user.invitations.present? %>
+              <div class="e-table">
+                <div class="table-responsive table-lg mt-3">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="max-width">Name</th>
+                        <th class="sortable">Date</th>
+                        <th>Show</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <% @projects.each do |project| %>
+                    <tbody>
+                      <tr>
+                        <td class="text-nowrap align-middle"><%= project.title %></td>
+                        <td class="text-nowrap align-middle"><span><%= project.created_at %></span></td>
+                        <td class="text-center align-middle"><%= link_to "Show", project, class: "text-blue-600 font-medium" %></td>
+                        <td class="text-center align-middle">
+                          <div class="btn-group align-top">
+                          <%= link_to "Edit", edit_project_path(project), :class => 'text-blue-600' %>   &emsp;
+                          <%= link_to "Destroy", project_path(project), data: {"turbo-method": :delete} %>
+                          </div>
+                        </td>
+                      </tr>
+                     
+                    </tbody>
+                    <%end%>
+                  </table>
+                </div>
+               
               </div>
-             
-            </div>
+            <%else%>
+              <h4>No projects created yet.</h4>
+            <%end%>  
           </div>
         </div>
       </div>
-     
     </div>
 
    
   </div>
 </div>
+
+
+<div class="row flex-lg-nowrap">
+  <div class="col">
+
+    <div class="row flex-lg-nowrap">
+      <div class="col mb-3">
+        <div class="e-panel card">
+          <div class="card-body">
+            <div class="card-title">
+               <h3>Invited Users </h3>
+            </div>
+            <% if current_user.invitations.present? %>
+              <div class="e-table">
+                <div class="table-responsive table-lg mt-3">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="max-width">Email</th>
+                        <th class="sortable">Sent At</th>
+                      </tr>
+                    </thead>
+                    <% current_user.invitations.each do |invitation_user| %>
+                    <tbody>
+                      <tr>
+                        <td class="text-nowrap align-middle"><%= invitation_user.email %></td>
+                        <td class="text-nowrap align-middle"><span><%= invitation_user.invitation_sent_at.strftime("%d/%m/%Y %T%:z") %></span></td>
+                      </tr>
+                     
+                    </tbody>
+                    <%end%>
+                  </table>
+                </div>
+               
+              </div>
+            <%else%>
+              <h4>You didn't send any invitations yet.</h4>
+            <%end%>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+  </div>
+</div>
+
 <!-- </div> -->
 <style> 
 .container{
