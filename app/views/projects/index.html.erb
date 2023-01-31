@@ -1,41 +1,65 @@
-  <div class='text-center p-20 mx-32'>
-  <p style="color: green"><%= notice %></p>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- <div class="container"> -->
+<div class="row flex-lg-nowrap">
+  <div class="col">
+   <div class="e-tabs mb-3 px-3">
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><%= link_to "New project", new_project_path , class: "rounded-lg py-3 px-3 bg-blue-600 text-white block font-medium" %>
+        </li>
+      </ul>
+    </div> 
 
-  <h1 class="text-5xl font-bold" >Projects</h1>
-
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link text-blue-600' %> |
-    <%= link_to "Logout", destroy_user_session_path, data: { "turbo-method": :delete }, :class => 'navbar-link text-blue-600'  %>
-
-    <div id="projects" class="w-full p-32">
-      <div class="flex justify-between items-center">
-        <h1 class="font-bold text-4xl">Posts</h1>
-        <%= link_to "New project", new_project_path , class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <div class="row flex-lg-nowrap">
+      <div class="col mb-3">
+        <div class="e-panel card">
+          <div class="card-body">
+            <div class="card-title">
+              Projects
+            </div>
+            <div class="e-table">
+              <div class="table-responsive table-lg mt-3">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th class="max-width">Name</th>
+                      <th class="sortable">Date</th>
+                      <th>Show</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <% @projects.each do |project| %>
+                  <tbody>
+                    <tr>
+                      <td class="text-nowrap align-middle"><%= project.title %></td>
+                      <td class="text-nowrap align-middle"><span><%= project.created_at %></span></td>
+                      <td class="text-center align-middle"><%= link_to "Show", project, class: "text-blue-600 font-medium" %></td>
+                      <td class="text-center align-middle">
+                        <div class="btn-group align-top">
+                        <%= link_to "Edit", edit_project_path(project), :class => 'text-blue-600' %>   &emsp;
+                        <%= link_to "Destroy", project_path(project), data: {"turbo-method": :delete} %>
+                        </div>
+                      </td>
+                    </tr>
+                   
+                  </tbody>
+                  <%end%>
+                </table>
+              </div>
+             
+            </div>
+          </div>
+        </div>
       </div>
+     
+    </div>
 
-      <div id="posts" class="min-w-min my-2.5 ">
-        <table class="table-auto rounded-md border-collapse border border-slate-400 min-w-full">
-            <thead>
-              <tr class='text-left border-b bg-gray-100'>
-                <th>Name</th>
-                <th></th>
-              </tr>
-            </thead>
-            <% @projects.each do |project| %>
-              <tr class='border-b'>
-              <td class='capitalize text-left'><%= project.title %></td>
-              <td><%= link_to "Show", project, class: "text-blue-600 font-medium" %></td>
-          </tr>
-            <% end %>
-          </table> 
-      </div>
+   
   </div>
-
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link text-3xl text-blue-600'  %> |
-    <%= link_to "Login", new_user_session_path, :class => 'navbar-link text-3xl text-blue-600'  %>
-  <% end %>
 </div>
-
-
+<!-- </div> -->
+<style> 
+.container{
+    margin-top:20px;
+    background:#f8f8f8
+}
+</style>

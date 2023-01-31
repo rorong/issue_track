@@ -2,11 +2,6 @@
   <%= render @project %>
 
 
-  <div>
-    <%= link_to "Edit this project", edit_project_path(@project), :class => 'text-blue-600' %> |
-    <%= link_to "Back to projects", projects_path, :class => 'text-blue-600' %>
-
-    <%= button_to "Destroy this project", @project, method: :delete , class: "rounded-lg py-3 mt-5 px-5 bg-red-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+  
   <%= render 'issues', issues: @project_issues, project_id:  @project.id %>
 </div>

@@ -7,20 +7,62 @@
     
     </div>
 
-    <div id="posts" class="min-w-min my-2.5 ">
-    <table class="table-auto rounded-md border-collapse border border-slate-400 min-w-full">
-        <thead>
-            <tr class='text-left border-b bg-gray-100'>
-            <th>Name</th>
-            <th></th>
-            </tr>
-        </thead>
-        <% issues.each do |issue| %>
-            <tr class='border-b'>
-            <td class='capitalize'><%= issue.title %></td>
-            <td><%= link_to "Show", project_issue_path(project_id,issue), class: "text-blue-600 font-medium" %></td>
-        </tr>
-        <% end %>
-        </table> 
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+    <div class="row flex-lg-nowrap">
+      <div class="col">
+        <div class="e-tabs mb-3 px-3">
+          
+        </div>
+        <div class="row flex-lg-nowrap">
+          <div class="col mb-3">
+            <div class="e-panel card">
+              <div class="card-body">
+                <div class="card-title">
+                </div>
+                <div class="e-table">
+                  <div class="table-responsive table-lg mt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th class="max-width">Name</th>
+                          <th class="sortable">Date</th>
+                          <th>Show</th>
+                       
+                        </tr>
+                      </thead>
+                      <% issues.each do |issue| %>
+                      <tbody>
+                        <tr>
+                          <td class="text-nowrap align-middle"><%= issue.title %></td>
+                          <td class="text-nowrap align-middle"><span><%=issue.created_at%></span></td>
+                          <td class="text-center align-middle"><%= link_to "Show", project_issue_path(project_id,issue), class: "text-blue-600 font-medium" %>
+                          </td>
+                         
+                        </tr>
+    
+                      </tbody>
+                      <%end%>
+                    </table>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+    
+       
+      </div>
+    </div>
     </div>
 </div>
+
+
+<style> 
+.container{
+    margin-top:20px;
+    background:#f8f8f8
+}
+</style>
