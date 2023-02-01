@@ -1,7 +1,6 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<!-- <div class="container"> -->
 <div class="row flex-lg-nowrap">
   <div class="col">
+  
    <div class="e-tabs mb-3 px-3">
       <ul class="nav nav-tabs">
         <li class="nav-item"><%= link_to "New project", new_project_path , class: "rounded-lg py-3 px-3 bg-blue-600 text-white block font-medium" %>
@@ -16,7 +15,7 @@
             <div class="card-title">
               <h3>Projects</h3>
             </div>
-            <% if current_user.invitations.present? %>
+            <% if current_user.projects.present? %>
               <div class="e-table">
                 <div class="table-responsive table-lg mt-3">
                   <table class="table table-bordered">
@@ -36,17 +35,15 @@
                         <td class="text-center align-middle"><%= link_to "Show", project, class: "text-blue-600 font-medium" %></td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                          <%= link_to "Edit", edit_project_path(project), :class => 'text-blue-600' %>   &emsp;
-                          <%= link_to "Destroy", project_path(project), data: {"turbo-method": :delete} %>
+                            <%= link_to "Edit", edit_project_path(project), :class => 'text-blue-600' %>   &emsp;
+                            <%= link_to "Destroy", project_path(project), data: {"turbo-method": :delete} %>
                           </div>
                         </td>
                       </tr>
-                     
                     </tbody>
                     <%end%>
                   </table>
                 </div>
-               
               </div>
             <%else%>
               <h4>No projects created yet.</h4>
@@ -56,10 +53,8 @@
       </div>
     </div>
 
-   
   </div>
 </div>
-
 
 <div class="row flex-lg-nowrap">
   <div class="col">
@@ -86,13 +81,11 @@
                       <tr>
                         <td class="text-nowrap align-middle"><%= invitation_user.email %></td>
                         <td class="text-nowrap align-middle"><span><%= invitation_user.invitation_sent_at.strftime("%d/%m/%Y %T%:z") %></span></td>
-                      </tr>
-                     
+                      </tr>                   
                     </tbody>
                     <%end%>
                   </table>
                 </div>
-               
               </div>
             <%else%>
               <h4>You didn't send any invitations yet.</h4>
@@ -102,14 +95,5 @@
       </div>
     </div>
 
-   
   </div>
 </div>
-
-<!-- </div> -->
-<style> 
-.container{
-    margin-top:20px;
-    background:#f8f8f8
-}
-</style>

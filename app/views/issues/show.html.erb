@@ -7,7 +7,7 @@
     <% @comments.each do |comment| %>
       <%= render 'comments/comment', comment: comment %>
    <% end %>
-   <%= link_to "New Comment", new_project_issue_comment_path(@project_id,@issue) , class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+   <%= link_to "New Comment", new_project_issue_comment_path(@project_id,@issue) , class: "rounded-lg mt-5 py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 
   <div>

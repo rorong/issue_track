@@ -2,67 +2,56 @@
 
 <div id="issues" class="w-full p-32">
     <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Issues</h1>
-    <%= link_to "New Issues", new_project_issue_path(project_id) , class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-    
+      <h1 class="font-bold text-4xl">Issues</h1>
+      <%= link_to "New Issues", new_project_issue_path(project_id) , class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     </div>
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <div class="container">
-    <div class="row flex-lg-nowrap">
-      <div class="col">
-        <div class="e-tabs mb-3 px-3">
-          
-        </div>
+    <%if @project.issues.present?%>
+      <div class="container">
         <div class="row flex-lg-nowrap">
-          <div class="col mb-3">
-            <div class="e-panel card">
-              <div class="card-body">
-                <div class="card-title">
-                </div>
-                <div class="e-table">
-                  <div class="table-responsive table-lg mt-3">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th class="max-width">Name</th>
-                          <th class="sortable">Date</th>
-                          <th>Show</th>
-                       
-                        </tr>
-                      </thead>
-                      <% issues.each do |issue| %>
-                      <tbody>
-                        <tr>
-                          <td class="text-nowrap align-middle"><%= issue.title %></td>
-                          <td class="text-nowrap align-middle"><span><%=issue.created_at%></span></td>
-                          <td class="text-center align-middle"><%= link_to "Show", project_issue_path(project_id,issue), class: "text-blue-600 font-medium" %>
-                          </td>
-                         
-                        </tr>
-    
-                      </tbody>
-                      <%end%>
-                    </table>
-                  </div>
-                 
-                </div>
+          <div class="col">
+              <div class="e-tabs mb-3 px-3">
               </div>
-            </div>
+              <div class="row flex-lg-nowrap">
+                <div class="col mb-3">
+                  <div class="e-panel card">
+                    <div class="card-body">
+                      <div class="card-title">
+                      </div>
+                      <div class="e-table">
+                        <div class="table-responsive table-lg mt-3">
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th class="max-width">Name</th>
+                                <th class="sortable">Date</th>
+                                <th>Show</th>
+                              </tr>
+                            </thead>
+                            <% issues.each do |issue| %>
+                            <tbody>
+                              <tr>
+                                <td class="text-nowrap align-middle"><%= issue.title %></td>
+                                <td class="text-nowrap align-middle"><span><%=issue.created_at%></span></td>
+                                <td class="text-center align-middle"><%= link_to "Show", project_issue_path(project_id,issue), class: "text-blue-600 font-medium" %>
+                                </td>
+                              </tr>
+                            </tbody>
+                            <%end%>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+        
+          
           </div>
-         
         </div>
-    
-       
       </div>
-    </div>
-    </div>
+    <%end%>
+
 </div>
 
 
-<style> 
-.container{
-    margin-top:20px;
-    background:#f8f8f8
-}
-</style>
