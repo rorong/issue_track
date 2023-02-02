@@ -35,8 +35,8 @@
                         <td class="text-center align-middle"><%= link_to "Show", project, class: "text-blue-600 font-medium" %></td>
                         <td class="text-center align-middle">
                           <div class="btn-group align-top">
-                            <%= link_to "Edit", edit_project_path(project), :class => 'text-blue-600' %>   &emsp;
-                            <%= link_to "Destroy", project_path(project), data: {"turbo-method": :delete} %>
+                            <%= link_to "Edit", edit_project_path(project), :class => 'text-blue-600 font-medium' %>   &emsp;
+                            <%= link_to "Destroy", project_path(project), data: {"turbo-method": :delete},class: "text-blue-600 font-medium" %>
                           </div>
                         </td>
                       </tr>
@@ -74,6 +74,7 @@
                       <tr>
                         <th class="max-width">Email</th>
                         <th class="sortable">Sent At</th>
+                        <th class="sortable">Resend invitation</th>
                       </tr>
                     </thead>
                     <% current_user.invitations.each do |invitation_user| %>
@@ -81,6 +82,11 @@
                       <tr>
                         <td class="text-nowrap align-middle"><%= invitation_user.email %></td>
                         <td class="text-nowrap align-middle"><span><%= invitation_user.invitation_sent_at.strftime("%d/%m/%Y %T%:z") %></span></td>
+                        <% if invitation_user.created_by_invite? && invitation_user.invitation_accepted? == false %>
+                          <td class="text-nowrap align-middle"><span><%= button_to 'Resend Invitation', resend_invitation_user_path(invitation_user), method: :patch,class: "text-blue-600 font-medium" %></span></td>
+                        <%else%>
+                          <td class="text-nowrap align-middle"><span>Invite Accepted</span></td>
+                        <%end%>
                       </tr>                   
                     </tbody>
                     <%end%>
